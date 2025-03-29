@@ -24,7 +24,6 @@ export default function Home() {
   const handleBgRemove = async (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    // const fileInput = evt.target.imgInput;
     const fileInput = evt.currentTarget.elements.namedItem("imgInput") as HTMLInputElement | null;
 
     if (!fileInput?.files?.length) return;
@@ -33,7 +32,6 @@ export default function Home() {
     reader.onload = async function (e) {
       const imgData = e.target?.result as string;
       const response = await sendData(imgData);
-      console.log(response)
 
       if (response.message === "Success!") {
         const baseImg = `data:image/png;base64,${response.result.base64img}`;
