@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "bg remover",
-  description: "remove background from image",
+  title: "Bg Remover",
+  description: "Removes background from image.",
 };
 
 export default function RootLayout({
