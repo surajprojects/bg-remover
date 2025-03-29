@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { FormEvent, useState, } from "react";
 
 const sendData = async (data: string) => {
   const response = await fetch("http://localhost:3000/api/", {
@@ -21,11 +21,13 @@ export default function Home() {
   const [isError, setIsError] = useState(false);
   const [processedImg, setProcessedImg] = useState<string | null>(null);
 
-  const handleBgRemove = async (evt: any) => {
+  const handleBgRemove = async (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    const fileInput = evt.target.imgInput; // Access file input directly
-    if (!fileInput.files.length) return;
+    // const fileInput = evt.target.imgInput;
+    const fileInput = evt.currentTarget.elements.namedItem("imgInput") as HTMLInputElement | null;
+
+    if (!fileInput?.files?.length) return;
 
     const reader = new FileReader();
     reader.onload = async function (e) {
@@ -78,4 +80,4 @@ export default function Home() {
       )}
     </main>
   );
-}
+};
